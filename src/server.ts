@@ -56,7 +56,7 @@ app.get('/api/jobs', async (req, res) => {
 
 app.get('/api/jobs/:id', async (req, res) => {
   const { id } = req.params;
-  const job = getSingleJob(id);
+  const job = await getSingleJob(id);
   if (!job) return res.status(400).json({ message: 'Job does not exist.' });
   return res.json(job);
 });

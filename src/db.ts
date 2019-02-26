@@ -5,11 +5,6 @@ const job = new Datastore({
   filename: 'data/Job.db',
 });
 
-job.ensureIndex({
-  fieldName: 'id',
-  unique: true,
-});
-
 export interface IJob {
   company: string;
   country: string;
@@ -29,7 +24,7 @@ export interface IJob {
 
 export const addJob = (data: IJob) => job.insert(data);
 
-export const updateJob = (data: IJob) => job.update({ id: data.id }, data);
+export const updateJob = (data: IJob) => job.update({ _id: data.id }, data);
 
 export const getJobsCount = (params: Partial<IJob> = {}) => job.count(params);
 
@@ -39,7 +34,7 @@ export const getJobs = ({
   ...params
 }: Partial<IJob> & { limit: number; skip: number }) =>
   job
-    .find(params || {}, {
+    .cfind(params || {}, {
       company: 0,
       description: 0,
       email: 0,
@@ -48,10 +43,11 @@ export const getJobs = ({
     })
     .sort({ createdAt: -1 })
     .skip(skip)
-    .limit(limit);
+    .limit(limit)
+    .exec();
 
-export const getSingleJob = (id: string) => job.findOne({ id });
+export const getSingleJob = (id: string) => job.findOne({ _id: id });
 
-export const deleteJob = (id: number) => job.remove({ id });
+export const deleteJob = (id: number) => job.remove({ _id: id });
 
 export default job;
