@@ -24,8 +24,7 @@ Company: <code>${job.company}</code>
 
 <b>Job Description & Requirements</b>
 ${job.description}
-
-${job.website ? `<a href="${job.website}">🌐 Website</a>` : ''}
+${job.website ? `\n<a href="${job.website}">🌐 Website</a>` : ''}
 ${job.tags.map(t => `#${t}`).join(' ')}
 `;
 
