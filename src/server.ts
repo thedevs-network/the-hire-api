@@ -2,7 +2,6 @@ import { config as dotenv } from 'dotenv';
 dotenv();
 
 import * as express from 'express';
-import * as shortid from 'shortid';
 import { addJob, getJobs, getJobsCount, getSingleJob, updateJob } from './db';
 import { sendJob } from './bot';
 
@@ -24,7 +23,6 @@ app.post('/api/jobs', auth, async (req, res) => {
     const { secret, ...data } = req.body;
     const job = {
       ...data,
-      id: shortid.generate(),
       createdAt: new Date().toJSON(),
     };
     await addJob(job);
