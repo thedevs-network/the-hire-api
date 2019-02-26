@@ -27,11 +27,9 @@ export interface IJob {
   website?: string;
 }
 
-export const addJob = (data: IJob) =>
-  job.insert({ id: data.id }, data, { upsert: true });
+export const addJob = (data: IJob) => job.insert(data);
 
-export const updateJob = (data: IJob) =>
-  job.update({ id: data.id }, data);
+export const updateJob = (data: IJob) => job.update({ id: data.id }, data);
 
 export const getJobsCount = (params: Partial<IJob> = {}) => job.count(params);
 
