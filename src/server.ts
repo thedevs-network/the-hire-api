@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
     return res.status(401).json({ message: 'Unauthorized' });
   }
   return next();
-}
+};
 
 app.post('/api/jobs', auth, async (req, res) => {
   try {
