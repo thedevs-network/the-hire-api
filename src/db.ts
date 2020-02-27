@@ -1,8 +1,8 @@
-import * as Datastore from 'nedb-promise';
+import * as Datastore from "nedb-promise";
 
 const job = new Datastore({
   autoload: true,
-  filename: 'data/Job.db',
+  filename: "data/Job.db",
 });
 
 export interface IJob {
@@ -11,7 +11,8 @@ export interface IJob {
   createdAt: string;
   description: string;
   email?: string;
-  experience: 'Junior' | 'Mid-Level' | 'Senior';
+  applyLink?: string;
+  experience: "Junior" | "Mid-Level" | "Senior";
   id: string;
   isRemote: boolean;
   role: string;
